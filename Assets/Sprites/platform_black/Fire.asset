@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: Player
+  m_Name: Fire
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 528796096, guid: 62e81d5a115522542aea32558a4aa6e7, type: 3}
-  - {fileID: -742884257, guid: 62e81d5a115522542aea32558a4aa6e7, type: 3}
-  - {fileID: -100408387, guid: 62e81d5a115522542aea32558a4aa6e7, type: 3}
-  m_MinSpeed: 6
-  m_MaxSpeed: 6
+  - {fileID: 1022445830, guid: 8aa010fdf71f6964d925aca5333f4fa3, type: 3}
+  - {fileID: 836718449, guid: 8aa010fdf71f6964d925aca5333f4fa3, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
-  m_TileColliderType: 0
+  m_TileColliderType: 1
   m_TileAnimationFlags: 0
