@@ -7,29 +7,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
+    [Header ("Shared")]
+    [SerializeField] public BoxCollider2D playerCollider;
+    [SerializeField] public Animator animator;
+    public Vector2 _moveInput;
+    public Rigidbody2D _rb;
+    private PlayerJump _playerJump;
+    
     [Header ("Movement")]
-    private Vector2 _moveInput;
     [SerializeField] private float moveSpeed = 1f;
-    private Rigidbody2D _rb;
-    
-    [Header ("Visuals")]
     [SerializeField] private SpriteRenderer dogSprite;
-    [SerializeField] private Animator animator;
     
-    [Header ("Jumps")]
-    [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private BoxCollider2D playerCollider;
-    private bool _standing;
-    private bool _isJumping;
-
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _playerJump = GetComponent<PlayerJump>();
     }
     
     private void Update()
     {
-        HandleFlips();
+        FlipPlayerVisual();
         Move();
         HandleMoveVisuals();
     }
@@ -39,7 +37,7 @@ public class PlayerMove : MonoBehaviour
         _moveInput = value.Get<Vector2>();
     }
     
-    private void HandleFlips()
+    private void FlipPlayerVisual()
     {
         if (_moveInput.x < 0 )
         {
@@ -51,7 +49,7 @@ public class PlayerMove : MonoBehaviour
             dogSprite.flipX = false;
         }
     }
-    
+
     private void Move()
     {
         var playerVelocity = new Vector2 (_moveInput.x * moveSpeed, _rb.velocity.y);
@@ -60,7 +58,8 @@ public class PlayerMove : MonoBehaviour
 
     private void HandleMoveVisuals()
     {
-        if (_moveInput.x != 0 && !_isJumping)
+        var isJumping = _playerJump.GetIsJumping();
+        if (_moveInput.x != 0 && !isJumping)
         {
             SetMoveAnimation(true);
         }
@@ -71,28 +70,5 @@ public class PlayerMove : MonoBehaviour
     private void SetMoveAnimation(bool insertBool)
     {
         animator.SetBool("isRunning", insertBool);
-    }
-    
-    private void OnJump(InputValue jumpValue)
-    {
-        _isJumping = true;
-        LayerMask mask = LayerMask.GetMask("Ground");
-        _standing = playerCollider.IsTouchingLayers(mask);
-        
-        if (jumpValue.isPressed && _standing)
-        {
-            var jumpVelocity = new Vector2(_rb.velocity.x, jumpSpeed);
-            _rb.velocity = jumpVelocity;
-            animator.SetBool("isJumping", true);
-        }
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            animator.SetBool("isJumping", false);
-            _isJumping = false;
-        }
     }
 }
