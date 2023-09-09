@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [Header ("Shared")]
-    [SerializeField] public BoxCollider2D playerCollider;
     [SerializeField] public Animator animator;
     public Vector2 _moveInput;
     public Rigidbody2D _rb;

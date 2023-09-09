@@ -7,6 +7,7 @@ public class PlayerClimb : MonoBehaviour
 {
     [SerializeField] private float climbSpeed = 5f;
     private bool _isAtLadder;
+    private float _rbDefaultGravityScale;
     
     private PlayerMove _playerMove;
     private PlayerJump _playerJump;
@@ -15,6 +16,7 @@ public class PlayerClimb : MonoBehaviour
     {
         _playerMove = GetComponent<PlayerMove>();
         _playerJump = GetComponent<PlayerJump>();
+        _rbDefaultGravityScale = _playerMove._rb.gravityScale;
     }
 
     private void Update()
@@ -25,7 +27,7 @@ public class PlayerClimb : MonoBehaviour
     private void Climb()
     {
         LayerMask mask = LayerMask.GetMask("Ladder");
-        _isAtLadder = _playerMove.playerCollider.IsTouchingLayers(mask);
+        _isAtLadder = _playerJump.playerCollider.IsTouchingLayers(mask);
         
         if (_isAtLadder)
         {
@@ -34,12 +36,21 @@ public class PlayerClimb : MonoBehaviour
             
             var playerVelocity = new Vector2 (_playerMove._rb.velocity.x, _playerMove._moveInput.y * climbSpeed);
             _playerMove._rb.velocity = playerVelocity;
-            _playerMove.animator.SetBool("isClimbing", true);
+
+            if (_playerMove._moveInput.y != 0)
+            {
+                _playerMove.animator.SetBool("isClimbing", true);
+            }
+            
+            else if (_playerMove._moveInput.y == 0)
+            {
+                _playerMove.animator.SetBool("isClimbing", false);
+            }
         }
 
         else
         {
-            _playerMove._rb.gravityScale = 1;
+            _playerMove._rb.gravityScale = _rbDefaultGravityScale;
             _playerMove.animator.SetBool("isClimbing", false);
         }
         

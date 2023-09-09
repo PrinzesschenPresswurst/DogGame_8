@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 5f;
+    [SerializeField] public BoxCollider2D playerCollider;
     private bool _standing;
     private bool _isJumping;
     
@@ -20,9 +21,9 @@ public class PlayerJump : MonoBehaviour
     {
         _isJumping = true;
         LayerMask mask = LayerMask.GetMask("Ground");
-        _standing = _playerMove.playerCollider.IsTouchingLayers(mask);
+        _standing = playerCollider.IsTouchingLayers(mask);
         
-        if (jumpValue.isPressed && _standing )
+        if (jumpValue.isPressed && _standing)
         {
             var playerVelocity = new Vector2(_playerMove._rb.velocity.x, jumpSpeed);
             _playerMove._rb.velocity = playerVelocity;
