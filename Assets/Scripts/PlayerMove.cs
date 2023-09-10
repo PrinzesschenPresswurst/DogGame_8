@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public Vector2 _moveInput;
     public Rigidbody2D _rb;
     private PlayerJump _playerJump;
+    private bool _isAlive = true;
     
     [Header ("Movement")]
     [SerializeField] private float moveSpeed = 1f;
@@ -26,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     
     private void Update()
     {
+        if (_isAlive == false) return;
         FlipPlayerVisual();
         Move();
         HandleMoveVisuals();
@@ -69,5 +71,10 @@ public class PlayerMove : MonoBehaviour
     private void SetMoveAnimation(bool insertBool)
     {
         animator.SetBool("isRunning", insertBool);
+    }
+
+    public void OnPlayerDeath()
+    {
+        _isAlive = false;
     }
 }

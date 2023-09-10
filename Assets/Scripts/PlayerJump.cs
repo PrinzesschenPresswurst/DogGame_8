@@ -7,8 +7,10 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] public BoxCollider2D playerCollider;
+    
     private bool _standing;
     private bool _isJumping;
+    private bool _isAlive = true;
     
     private PlayerMove _playerMove;
     
@@ -19,6 +21,8 @@ public class PlayerJump : MonoBehaviour
     
     private void OnJump(InputValue jumpValue)
     {
+        if (_isAlive == false) return;
+       
         _isJumping = true;
         LayerMask mask = LayerMask.GetMask("Ground");
         _standing = playerCollider.IsTouchingLayers(mask);
@@ -48,5 +52,10 @@ public class PlayerJump : MonoBehaviour
     {
         _playerMove.animator.SetBool("isJumping", false);
         _isJumping = false;
+    }
+
+    public void OnPlayerDeath()
+    {
+        _isAlive = false;
     }
 }
