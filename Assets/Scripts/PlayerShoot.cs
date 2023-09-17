@@ -10,24 +10,22 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletMoveSpeed = 5f;
     [SerializeField] private Transform newParent;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Transform bulletSpawn;
     private bool _isFlipped;
+    private PlayerMove _playerMove;
 
     private void Start()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerMove = GetComponent<PlayerMove>();
     }
 
     private void OnFire(InputValue jumpValue)
     {
-        var newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        var bulletPosition = bulletSpawn.transform.position;
+        var newBullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
         newBullet.transform.SetParent(newParent);
-
-        if (_spriteRenderer.flipX == enabled)
-        {
-            _isFlipped = true;
-        }
-        else _isFlipped = false;
+        
+        _isFlipped = _playerMove.GetFlip();
     }
 
     public float GetBulletMoveSpeed()

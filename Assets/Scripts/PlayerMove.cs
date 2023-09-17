@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -13,11 +14,10 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D _rb;
     private PlayerJump _playerJump;
     private bool _isAlive = true;
+    private bool _isFlipped;
     
     [Header ("Movement")]
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private SpriteRenderer dogSprite;
-    
     
     private void Start()
     {
@@ -42,15 +42,28 @@ public class PlayerMove : MonoBehaviour
     {
         if (_moveInput.x < 0 )
         {
-            dogSprite.flipX = true;
+            //dogSprite.flipX = true;
+            //var playerRotation = Quaternion.Euler(0, 180, 0);
+            //gameObject.transform.rotation = playerRotation;
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            _isFlipped = true;
         }
         
         else if (_moveInput.x > 0 )
         {
-            dogSprite.flipX = false;
+            //dogSprite.flipX = false;
+            //var playerRotation = Quaternion.Euler(0, 0, 0);
+            //gameObject.transform.rotation = playerRotation;
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            _isFlipped = false;
         }
     }
 
+    public bool GetFlip()
+    {
+        return _isFlipped;
+    }
+    
     private void Move()
     {
         var playerVelocity = new Vector2 (_moveInput.x * moveSpeed, _rb.velocity.y);

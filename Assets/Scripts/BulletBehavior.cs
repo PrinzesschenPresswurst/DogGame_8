@@ -35,7 +35,6 @@ public class BulletBehavior : MonoBehaviour
         {
             BulletFly(1);
         }
-        
     }
 
     private void BulletFly(float direction)
