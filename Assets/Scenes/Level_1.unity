@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 45
     OrthographicSize: 10
-    NearClipPlane: 6.02
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -383,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 177085435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.19, y: -0.89, z: -10}
+  m_LocalPosition: {x: -5.96, y: -1.24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1073,7 +1073,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 6.02
+  near clip plane: 0.01
   far clip plane: 5000
   field of view: 45
   orthographic: 0
@@ -1102,7 +1102,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.19, y: -0.89, z: -10}
+  m_LocalPosition: {x: -5.96, y: -1.24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1191,6 +1191,7 @@ GameObject:
   - component: {fileID: 699291385}
   - component: {fileID: 699291386}
   - component: {fileID: 699291387}
+  - component: {fileID: 699291388}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1207,7 +1208,7 @@ Transform:
   m_GameObject: {fileID: 699291377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.19, y: -0.89, z: 0}
+  m_LocalPosition: {x: -5.96, y: -1.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1388,6 +1389,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 1771608385}
   mainCamera: {fileID: 519420031}
+--- !u!114 &699291388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699291377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e29f29a70ce704187e0e0888baff6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3620565455988022267, guid: d17eb772e2a4c9d489c8f804530bb523, type: 3}
+  bulletMoveSpeed: 5
+  newParent: {fileID: 699291378}
 --- !u!1 &727874246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3354,7 +3370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &932171875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4667,6 +4683,7 @@ GameObject:
   - component: {fileID: 1614804413}
   - component: {fileID: 1614804417}
   - component: {fileID: 1614804418}
+  - component: {fileID: 1614804419}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -4847,6 +4864,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+--- !u!114 &1614804419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614804412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e9afb4cfe6f5d4094642df71b097a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyKillParticles: {fileID: 7322717106502886925, guid: 2b911ecf5c984c34dac6e300f4082d08, type: 3}
 --- !u!1 &1771608384
 GameObject:
   m_ObjectHideFlags: 0
