@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        if (_currentScene < _maxScenes-1)
+        int nextScene = _currentScene + 1;
+        if (nextScene < _maxScenes)
         {
-            int nextScene = _currentScene + 1;
             SceneManager.LoadScene(nextScene);
         }
 
