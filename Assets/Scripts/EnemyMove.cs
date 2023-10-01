@@ -8,12 +8,12 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     private float _moveDirection = 1f;
     private Rigidbody2D _rb;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Collider2D feetCollider;
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     
     void Update()
@@ -30,6 +30,13 @@ public class EnemyMove : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         _moveDirection = -_moveDirection;
-        _spriteRenderer.flipX = !_spriteRenderer.flipX;
+        gameObject.transform.localScale = new Vector3(_moveDirection, 1, 1);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("trigger exit" + other.gameObject.name);
+        _moveDirection = -_moveDirection;
+        gameObject.transform.localScale = new Vector3(_moveDirection, 1, 1);
     }
 }
