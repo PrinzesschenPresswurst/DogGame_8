@@ -4466,6 +4466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883ebfc1f894254dbb09ba8116e6501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitParticles: {fileID: 1290158176872547931, guid: 214f5d96bab4eb44699266be4b53b731, type: 3}
 --- !u!1 &1478500132
 GameObject:
   m_ObjectHideFlags: 0
@@ -5025,6 +5026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  feetCollider: {fileID: 0}
 --- !u!114 &1614804419
 MonoBehaviour:
   m_ObjectHideFlags: 0
