@@ -29,9 +29,6 @@ public class GameManager : MonoBehaviour
 
     public void OnExitReached()
     {
-        
-        Debug.Log("max = " + _maxScenes);
-        Debug.Log("current = " + _currentScene);
         Invoke("LoadNextLevel", 2f);
     }
 
@@ -40,16 +37,12 @@ public class GameManager : MonoBehaviour
         if (_currentScene < _maxScenes-1)
         {
             int nextScene = _currentScene + 1;
-            Debug.Log("load scene" + nextScene);
             SceneManager.LoadScene(nextScene);
         }
 
         else
         {
-            Debug.Log("back to menu");  
             SceneManager.LoadScene("Menu");
         }
-        
-        
     }
 }
